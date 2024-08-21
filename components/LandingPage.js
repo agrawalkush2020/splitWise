@@ -18,7 +18,6 @@ const LandingPage = ({
     }
 
     return (
-        <div>
             <div>
                 <div>
                     <form>
@@ -44,7 +43,6 @@ const LandingPage = ({
                 <div>Click to <a className="color-red cursor-pointer" onClick={handleSignIn}>Sign-Up</a></div>
 
             </div>
-        </div>
     )
 }
 

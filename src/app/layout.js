@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import LandingPage from "../../components/LandingPage";
 import "./globals.css";
+import Outerbody from "../../components/Outerbody"
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,7 +16,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       {/* <body className={inter.className}>{children}</body> */}
       <body>
-        <LandingPage />
+        {/* <LandingPage /> */}
+        <Outerbody />
       </body>
     </html>
   );
