@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "./Input";
 
-const SignUp = () => {
+const SignUp = async () => {
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
@@ -34,14 +34,40 @@ const SignUp = () => {
         setProfilePhoto(event.target.files[0]);
     }
 
+    const makeTheCall = async (url, body) => {
+        let response = await fetch(url,{
+            body:body,
+            headers:{}
+        })
+
+        return response;
+    }
+
     const handleTheSubmit = (event) => {
-        event.preventDefault(); 
-        // Handle the form submission
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-        } else {
-            // Proceed with form submission logic
+        event.preventDefault();
+        try {
+            if (phoneNumber.toString().length != 10) {   //phone number 10 digit ka hona chahiye 
+                throw new Error('Please put 10 digit "Phone Number"!')
+            }
+            else if (password !== confirmPassword) {
+                throw new Error('Passwords do not match!');
+            }
+            else if ('write it') {  //format check krenge file ka jpg and jpeg hee hona chahiye 
+                throw new Error('please upload the file with jpg or jpeg format only');
+            }
+
+        } catch (error) {
+            alert(error.message);
         }
+
+        let url = '';
+        let body = {
+
+        }
+        let response = makeTheCall(url, body);
+
+
+
     }
 
     return (
@@ -89,7 +115,7 @@ const SignUp = () => {
                 />
                 <div>
                     <label>Profile Photo (Optional):</label>
-                    <input
+                    <Input
                         type="file"
                         onChange={handleFileChange}
                     />

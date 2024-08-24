@@ -29,3 +29,5 @@ const Groups = ({
         </>
     )
 }
+
+export default Group;

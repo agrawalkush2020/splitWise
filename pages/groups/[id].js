@@ -2,6 +2,7 @@ import React from "react";
 import Transaction from "../../components/Transaction";
 
 // month wise list banegi({kisne diye, amount, date, thing, (dene hain mujhe yaa lene hain)})
+// month wise sort bhi hoga 
 
 const GroupDetail = ({
     id = -1,
@@ -38,7 +39,9 @@ const GroupDetail = ({
                     />
                 )
             })}
-            
+
         </div>
     )
 }
+
+export default GroupDetail;
