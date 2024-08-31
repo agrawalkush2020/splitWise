@@ -8,8 +8,8 @@ const Outerbody = ({
 
 })=>{
     return (
-        // <SignUp />    
-        <Group />
+        <SignUp />    
+        // <Group />
     )
 }
 

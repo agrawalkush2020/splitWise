@@ -1,7 +1,8 @@
+
 import React, { useState } from "react";
 import Input from "./Input";
 
-const SignUp = async () => {
+const SignUp = () => {
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
@@ -34,16 +35,25 @@ const SignUp = async () => {
         setProfilePhoto(event.target.files[0]);
     }
 
+    function validateEmail(email) {
+        // Regular expression to validate email format
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailPattern.test(email);
+    }
+
     const makeTheCall = async (url, body) => {
         let response = await fetch(url,{
-            body:body,
-            headers:{}
+            method:'POST',
+            body: JSON.stringify(body),
+            headers:{
+                'Content-Type': 'application/json'
+            }
         })
 
         return response;
     }
 
-    const handleTheSubmit = (event) => {
+    const handleTheSubmit = async (event) => {
         event.preventDefault();
         try {
             if (phoneNumber.toString().length != 10) {   //phone number 10 digit ka hona chahiye 
@@ -52,21 +62,37 @@ const SignUp = async () => {
             else if (password !== confirmPassword) {
                 throw new Error('Passwords do not match!');
             }
-            else if ('write it') {  //format check krenge file ka jpg and jpeg hee hona chahiye 
+            else if(!validateEmail(email)){
+                throw new Error('please enter a "valid email"!!')
+            }
+            else if (false) {  //format check krenge file ka jpg and jpeg hee hona chahiye 
                 throw new Error('please upload the file with jpg or jpeg format only');
             }
 
         } catch (error) {
             alert(error.message);
+            return; // Stop further processing if there's an error
         }
 
-        let url = '';
+        let url = 'http://127.0.0.1:8000/' + "users/signup/";
         let body = {
-
+            fullName: fullName,
+            phoneNumber: phoneNumber,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+            // Profile photo will not be included in a simple JSON body; it needs to be handled differently (e.g., using FormData for file uploads)
+        };
+        debugger
+        let response = await makeTheCall(url, body);
+        if(response.ok){
+            const data = await response.json();   
         }
-        let response = makeTheCall(url, body);
-
-
+        else{
+            alert('Some thing went Wrong!!')
+        }
+         
+        debugger
 
     }
 
