@@ -6,6 +6,7 @@ const SignUp = () => {
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
+    const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [profilePhoto, setProfilePhoto] = useState(null);
@@ -13,6 +14,10 @@ const SignUp = () => {
     // Handling functions for each input state
     const handleFullNameChange = (value) => {
         setFullName(value);
+    }
+
+    const handleUserNameChange = (value) => {
+        setUserName(value);
     }
 
     const handlePhoneNumberChange = (value) => {
@@ -42,10 +47,10 @@ const SignUp = () => {
     }
 
     const makeTheCall = async (url, body) => {
-        let response = await fetch(url,{
-            method:'POST',
+        let response = await fetch(url, {
+            method: 'POST',
             body: JSON.stringify(body),
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             }
         })
@@ -62,7 +67,7 @@ const SignUp = () => {
             else if (password !== confirmPassword) {
                 throw new Error('Passwords do not match!');
             }
-            else if(!validateEmail(email)){
+            else if (!validateEmail(email)) {
                 throw new Error('please enter a "valid email"!!')
             }
             else if (false) {  //format check krenge file ka jpg and jpeg hee hona chahiye 
@@ -79,19 +84,20 @@ const SignUp = () => {
             fullName: fullName,
             phoneNumber: phoneNumber,
             email: email,
+            userName:userName,
             password: password,
-            confirmPassword: confirmPassword,
+            // confirmPassword: confirmPassword,
             // Profile photo will not be included in a simple JSON body; it needs to be handled differently (e.g., using FormData for file uploads)
         };
         debugger
         let response = await makeTheCall(url, body);
-        if(response.ok){
-            const data = await response.json();   
+        if (response.ok) {
+            const data = await response.json();
         }
-        else{
+        else {
             alert('Some thing went Wrong!!')
         }
-         
+
         debugger
 
     }
@@ -122,6 +128,14 @@ const SignUp = () => {
                     value={email}
                     placeHolder={"Enter your email address"}
                     handleChange={handleEmailChange}
+                />
+                <Input
+                    name={"username"}
+                    type={"text"}
+                    label={"Username:"}
+                    value={userName}
+                    placeHolder={"UserName"}
+                    handleChange={handleUserNameChange}
                 />
                 <Input
                     name={"password"}
