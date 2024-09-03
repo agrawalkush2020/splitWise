@@ -93,13 +93,19 @@ const SignUp = () => {
         let response = await makeTheCall(url, body);
         if (response.ok) {
             const data = await response.json();
+            if(data?.success){
+                // user created successfully
+
+            }
+            else{
+                alert(`${data?.message}`);
+            }
         }
         else {
-            alert('Some thing went Wrong!!')
+            alert('Some thing went Wrong!!');
         }
 
         debugger
-
     }
 
     return (
