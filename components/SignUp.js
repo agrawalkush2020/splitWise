@@ -1,8 +1,14 @@
-
+"use client";
 import React, { useState } from "react";
 import Input from "./Input";
+import { useRouter } from 'next/navigation';
 
-const SignUp = () => {
+const SignUp = ({
+
+}) => {
+
+    const router = useRouter();
+
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
@@ -84,28 +90,24 @@ const SignUp = () => {
             fullName: fullName,
             phoneNumber: phoneNumber,
             email: email,
-            userName:userName,
+            userName: userName,
             password: password,
-            // confirmPassword: confirmPassword,
             // Profile photo will not be included in a simple JSON body; it needs to be handled differently (e.g., using FormData for file uploads)
         };
-        debugger
         let response = await makeTheCall(url, body);
         if (response.ok) {
             const data = await response.json();
-            if(data?.success){
-                // user created successfully
-
+            if (data?.success) {
+                // user created successfully, Redirect to login after successful signup
+                router.push('/users/login');
             }
-            else{
+            else {
                 alert(`${data?.message}`);
             }
         }
         else {
             alert('Some thing went Wrong!!');
         }
-
-        debugger
     }
 
     return (

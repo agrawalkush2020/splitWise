@@ -1,9 +1,14 @@
+"use client";
 import React, {useState} from "react";
 import Input from "./Input";
+import { useRouter } from 'next/navigation';
 
 const Login = ({
 
 }) => {
+
+    const router = useRouter();
+
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('');
 
@@ -24,6 +29,7 @@ const Login = ({
             },
             credentials: 'include',
         })
+        debugger
 
         return response;
     }
@@ -46,12 +52,12 @@ const Login = ({
         };
 
         let response = await makeTheCall(url, body);
+        debugger
         if(response.ok){
             const data = await response.json();
             if(data?.success){
                 // user logged In
-
-
+                router.push('/users/login');
             }
             else{
                 alert(`${data?.message}`);
