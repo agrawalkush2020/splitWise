@@ -20,6 +20,7 @@ const Login = ({
         setPassword(value);
     }
 
+
     const makeTheCall = async (url, body) => {
         let response = await fetch(url, {
             method: 'POST',
@@ -27,9 +28,8 @@ const Login = ({
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
+            // credentials: 'include',
         })
-        debugger
 
         return response;
     }
@@ -43,7 +43,7 @@ const Login = ({
 
         event.preventDefault();
 
-        debugger
+        // debugger
 
         let url = 'http://127.0.0.1:8000/' + "users/login/";
         let body = {
@@ -57,7 +57,7 @@ const Login = ({
             const data = await response.json();
             if(data?.success){
                 // user logged In
-                router.push('/users/login');
+                router.push('/groups');
             }
             else{
                 alert(`${data?.message}`);

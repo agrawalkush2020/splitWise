@@ -2,8 +2,10 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Login from '../../../components/Login';
+import Logout from '../../../components/Logout';
 
 export default function LoginPage() {
+
     const [isAuthenticated, setIsAuthenticated] = useState(null);
 
     useEffect(() => {
@@ -28,6 +30,7 @@ export default function LoginPage() {
                 <p>You are already logged in. Please log out to log in as a different user.</p>
             ) : (
                 <>
+                    <Logout />
                     <Login />
                     <p>Not Registered?&nbsp;&nbsp;&nbsp;
                         <Link href="/users/signup">

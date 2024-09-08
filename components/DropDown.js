@@ -18,7 +18,7 @@ const DropDown = ({
 
     return (
         <div>
-            <label for="cars">Choose a car:</label>
+            <label for="cars">{label}</label>
             <select
                 selected={alwaysShowDefault ? '' : selectedOption}
                 onSelect={(event) => onSelectOption(event)}
