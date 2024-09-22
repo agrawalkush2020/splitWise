@@ -2,6 +2,7 @@
 import React from "react";
 import Group from "../../components/Group";
 import { useRouter } from 'next/navigation';
+import { makeTheCall } from '../../utils/api'
 
 const AddGroupButton = ({
 
@@ -44,7 +45,15 @@ const AllGroups = ({
 
     const router = useRouter();
 
-    const enterTheGroup = (groupId) => {
+    const enterTheGroup = async (groupId, goupName) => {
+
+        try {
+            const data = await makeTheCall()
+        } catch (error) {
+
+
+        }
+
         // Programmatically navigate to /groups/[groupId]
         router.push(`/groups/${groupId}`);
     }
