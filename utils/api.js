@@ -1,6 +1,5 @@
 const makeTheCall = async (url, body = null, method = 'GET') => {
     try {
-
         let options = {
             method,
             headers: {

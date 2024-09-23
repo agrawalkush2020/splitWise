@@ -28,7 +28,7 @@ const Login = ({
             headers: {
                 'Content-Type': 'application/json'
             },
-            // credentials: 'include',
+            credentials: 'include', // This ensures cookies are sent and received
         })
 
         return response;
