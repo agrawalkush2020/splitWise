@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import LandingPage from "../../components/LandingPage";
-import "./globals.css";
+import '../../styles/globals.css'
 import Outerbody from "../../components/Outerbody"
 
 

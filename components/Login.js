@@ -60,7 +60,7 @@ const Login = ({
                 router.push('/groups');
             }
             else{
-                alert(`${data?.message}`);
+                alert(data?.message);
             }
         }
         else{
@@ -70,29 +70,27 @@ const Login = ({
     }
 
     return (
-        <>
-            <form onSubmit={handleTheSubmit}>
-
-                <Input
-                    name={"username"}
-                    type={"text"}
-                    label={"Username:"}
-                    value={userName}
-                    placeHolder={"UserName"}
-                    handleChange={handleUserNameChange}
-                />
-                <Input
-                    name={"password"}
-                    type={"password"}
-                    label={"Password:"}
-                    value={password}
-                    placeHolder={"Enter your password"}
-                    handleChange={handlePasswordChange}
-                />
-
-                <button className="bg-orange-600" type="submit">Log In</button>
-            </form>
-        </>
+        <form onSubmit={handleTheSubmit}>
+            <Input
+                name="username"
+                type="text"
+                label="Username:"
+                value={userName}
+                placeholder="UserName"
+                handleChange={handleUserNameChange}
+            />
+            <Input
+                name="password"
+                type="password"
+                label="Password:"
+                value={password}
+                placeholder="Enter your password"
+                handleChange={handlePasswordChange}
+            />
+            <button className="bg-orange-600" type="submit">
+                Log In
+            </button>
+        </form>
     )
 }
 
